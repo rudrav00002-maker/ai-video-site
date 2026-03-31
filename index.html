@@ -183,3 +183,12 @@ function sendWhatsApp() {
   window.open("https://wa.me/91XXXXXXXXXX");
 }
 </script>
+<a href="upi://pay?pa=yourname@upi&pn=AI%20Video&am=230&cu=INR">
+  <button>Pay via UPI App</button>
+</a><button onclick="payUPI()">Pay via UPI</button>
+
+<script>
+function payUPI() {
+  window.location.href = "upi://pay?pa=yourname@upi&pn=AI%20Video&am=230&cu=INR";
+}
+</script>
