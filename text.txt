@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Video Generator</title>
+</head>
+<body>
+
+<h1>AI Video Generator 🎬</h1>
+
+<textarea id="script" placeholder="Enter your script..." rows="5" cols="40"></textarea>
+<br><br>
+
+<button onclick="generateVideo()">Generate Video</button>
+<button onclick="payNow()">Buy Premium ₹230</button>
+
+<p id="status"></p>
+<video id="video" controls width="300" style="display:none;"></video>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+let count = 0;
+let isPremium = false;
+
+function generateVideo() {
+  let script = document.getElementById("script").value;
+  count++;
+
+  if (count > 2 && !isPremium) {
+    alert("Please buy premium ₹230 for 30 days");
+    return;
+  }
+
+  document.getElementById("status").innerText = "Generating AI Video...";
+
+  setTimeout(() => {
+    document.getElementById("status").innerText = "Video Ready!";
+    let video = document.getElementById("video");
+    video.style.display = "block";
+    video.src = "https://www.w3schools.com/html/mov_bbb.mp4";
+  }, 3000);
+}
+
+function payNow() {
+  var options = {
+    key: "YOUR_KEY_ID",
+    amount: "23000",
+    currency: "INR",
+    name: "AI Video Generator",
+    description: "30 Days Premium",
+    handler: function (response){
+        isPremium = true;
+        alert("Premium Activated!");
+    }
+  };
+
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
+
+</body
