@@ -144,3 +144,42 @@ function sendWhatsApp() {
 
 </body>
 </html>
+<script>
+let count = localStorage.getItem("count") || 0;
+let isPremium = localStorage.getItem("premium") === "true";
+
+function generateVideo() {
+  count++;
+  localStorage.setItem("count", count);
+
+  if (count > 2 && !isPremium) {
+    alert("Free limit over! Please buy Premium ₹230");
+    return;
+  }
+
+  document.getElementById("status").innerText = "Video Generated ✅";
+}
+
+function payUPI() {
+  let upi = "Rudraverma1@fam";
+  let amount = "230";
+  let name = "AI Video Generator";
+
+  let url = `upi://pay?pa=${upi}&pn=${name}&am=${amount}&cu=INR`;
+  window.location.href = url;
+
+  // 🔥 DEMO auto unlock (fake but works)
+  setTimeout(() => {
+    localStorage.setItem("premium", "true");
+    alert("Premium Activated ✅");
+  }, 5000);
+}
+
+function showQR() {
+  document.getElementById("qr").style.display = "block";
+}
+
+function sendWhatsApp() {
+  window.open("https://wa.me/91XXXXXXXXXX");
+}
+</script>
