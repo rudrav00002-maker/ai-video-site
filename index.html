@@ -60,3 +60,87 @@ function payNow() {
 </script>
 
 </body
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Video Generator</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #qr {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>AI Video Generator 🎬</h1>
+
+<textarea id="script" placeholder="Enter your script..." rows="4" cols="40"></textarea>
+<br><br>
+
+<button onclick="generateVideo()">Generate Video</button>
+
+<p id="status"></p>
+
+<hr>
+
+<h2>Buy Premium ₹230</h2>
+
+<button onclick="payUPI()">Pay via UPI App</button>
+<button onclick="showQR()">Show QR Code</button>
+
+<div id="qr">
+  <p>Scan & Pay ₹230</p>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=yourname@upi&pn=AI%20Video&am=230&cu=INR">
+  <p>UPI ID: yourname@upi</p>
+</div>
+
+<br>
+<button onclick="sendWhatsApp()">Send Payment Screenshot</button>
+
+<script>
+let count = 0;
+let isPremium = false;
+
+function generateVideo() {
+  count++;
+
+  if (count > 2 && !isPremium) {
+    alert("Free limit over! Please buy Premium ₹230");
+    return;
+  }
+
+  document.getElementById("status").innerText = "Video Generated ✅ (Demo)";
+}
+
+function payUPI() {
+  let upi = "yourname@upi";
+  let amount = "230";
+  let name = "AI Video Generator";
+
+  let url = `upi://pay?pa=${upi}&pn=${name}&am=${amount}&cu=INR`;
+  window.location.href = url;
+}
+
+function showQR() {
+  document.getElementById("qr").style.display = "block";
+}
+
+function sendWhatsApp() {
+  window.open("https://wa.me/91XXXXXXXXXX");
+}
+</script>
+
+</body>
+</html>
